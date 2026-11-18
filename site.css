@@ -199,6 +199,7 @@ img { max-width: 100%; }
   width: auto;
   max-width: none;
 }
+.strip .scroller:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .strip figcaption { color: var(--ink-2); font-size: 0.92rem; margin-top: 10px; text-align: center; }
 
 /* Cards: the app's own, plain on the page. */
@@ -211,7 +212,8 @@ img { max-width: 100%; }
   line-height: 1.12;
   margin-top: 8px;
 }
-.section .label { color: var(--accent); }
+/* The darker emerald in the light look: the accent is 3.4:1 on the page, under the 4.5:1 small words need. */
+.section .label { color: var(--link); }
 .section > .wrap > p { color: var(--ink-2); font-size: 1.08rem; margin-top: 10px; max-width: 40em; }
 .cards { display: grid; gap: 16px; margin-top: 28px; }
 @media (min-width: 720px) { .cards { grid-template-columns: repeat(2, 1fr); } }
