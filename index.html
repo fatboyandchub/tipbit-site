@@ -8,123 +8,414 @@
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#065f46">
 <meta name="referrer" content="no-referrer">
+<link rel="canonical" href="https://tipbit.3dlibrary.app/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tipbit.3dlibrary.app/">
 <meta property="og:title" content="Tipbit: Tip &amp; Income Tracker">
-<meta property="og:description" content="Know what you really make: tips, hours, miles and expenses, logged in seconds.">
+<meta property="og:description" content="Know what you really make: tips, hours, miles and expenses, logged in seconds. No sign-up, no ads, no tracking.">
 <meta property="og:image" content="https://tipbit.3dlibrary.app/img/icon.png">
-<link rel="icon" href="img/icon.png">
-<link rel="apple-touch-icon" href="img/icon.png">
+<link rel="icon" href="img/icon-96.png" sizes="96x96" type="image/png">
+<link rel="apple-touch-icon" href="img/icon-180.png">
 <link rel="stylesheet" href="site.css">
 </head>
 <body>
-<header class="aurora">
-  <div class="wrap hero">
-    <nav aria-label="Tipbit">
-      <a class="home" href="./"><img src="img/icon.png" width="34" height="34" alt=""><span>Tipbit</span></a>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="aurora hero">
+  <div class="wrap">
+    <nav class="top" aria-label="Tipbit">
+      <a class="home" href="./" aria-label="Tipbit home"><img src="img/icon-96.png" width="34" height="34" alt=""><span>Tipbit</span></a>
       <div class="links"><a href="support.html">Support</a><a href="privacy.html">Privacy</a></div>
     </nav>
-    <div class="intro">
-      <div>
+    <div class="hero-grid">
+      <div class="hero-words">
         <p class="label">Tip &amp; income tracker</p>
         <h1>Know what you really make.</h1>
-        <p class="line">Log a shift or a job in seconds. See your week, your take-home and your real hourly rate, when
-        your pay is different every day.</p>
-        <p class="soon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Coming soon to the App Store</p>
-      </div>
-      <!-- A sample week the way Home's hero shows it (made up; the numbers add up). -->
-      <div class="glance" role="img" aria-label="A sample week in Tipbit: $1,284.50 this week, 86% of a $1,500 goal, $31.33 an hour.">
-        <p class="label">This week</p>
-        <p class="total">$1,284<small>.50</small></p>
-        <div class="bar"><span></span></div>
-        <p class="goal"><span>86% of $1,500 goal</span><span>$215.50 to go</span></p>
-        <div class="rows">
-          <p class="row"><span>Tips</span><b>$1,147.50</b></p>
-          <p class="row"><span>Wage</span><b>$137.00</b></p>
-          <p class="row"><span>Per hour</span><b>$31.33</b></p>
+        <p class="line">Log a shift or a job in seconds, and see your take-home, your week and your real hourly rate,
+        when your pay is different every day.</p>
+        <div class="hero-cta">
+          <p class="soon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Coming soon to the App Store</p>
+          <a class="btn" href="#tour">See the app<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
         </div>
-        <p class="note">A sample week</p>
+        <ul class="hero-facts">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>No sign-up, no ads, no tracking</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>iPhone, iPad and Apple Watch</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Free to use, with Tipbit Pro</li>
+        </ul>
+      </div>
+      <!-- Home as the app draws it (the App Store pictures' sample week), with two of its pieces lifted off. -->
+      <div class="hero-shot" aria-hidden="true">
+        <picture class="screen">
+          <source type="image/avif" srcset="img/s/home-440.avif 440w, img/s/home-660.avif 660w, img/s/home-990.avif 990w" sizes="min(74vw, 340px)">
+          <source type="image/webp" srcset="img/s/home-440.webp 440w, img/s/home-660.webp 660w, img/s/home-990.webp 990w" sizes="min(74vw, 340px)">
+          <img src="img/s/home-660.jpg" srcset="img/s/home-440.jpg 440w, img/s/home-660.jpg 660w, img/s/home-990.jpg 990w" sizes="min(74vw, 340px)" width="990" height="2151" alt="" fetchpriority="high" decoding="async">
+        </picture>
+        <picture class="piece perhour">
+          <source type="image/avif" srcset="img/p/perhour-260.avif 260w, img/p/perhour-388.avif 388w" sizes="min(34vw, 156px)">
+          <source type="image/webp" srcset="img/p/perhour-260.webp 260w, img/p/perhour-388.webp 388w" sizes="min(34vw, 156px)">
+          <img src="img/p/perhour-388.png" width="388" height="222" alt="" decoding="async">
+        </picture>
+        <picture class="piece dinner">
+          <source type="image/avif" srcset="img/p/dinner-230.avif 230w, img/p/dinner-346.avif 346w" sizes="min(31vw, 143px)">
+          <source type="image/webp" srcset="img/p/dinner-230.webp 230w, img/p/dinner-346.webp 346w" sizes="min(31vw, 143px)">
+          <img src="img/p/dinner-346.png" width="346" height="156" alt="" decoding="async">
+        </picture>
       </div>
     </div>
   </div>
 </header>
 
-<main>
-  <section class="wrap strip" aria-label="Tipbit on iPhone">
+<main id="main">
+  <section class="wrap tour" id="tour" aria-labelledby="tour-h">
+    <h2 class="visually-hidden" id="tour-h">The app, in eight pictures</h2>
     <figure>
-      <div class="scroller" tabindex="0" role="region" aria-label="The App Store pictures, scroll sideways">
-        <!-- The App Store's pictures as one scene (img/strip.jpg, added with the store pictures). -->
-        <img src="img/strip.jpg" width="10560" height="2868" alt="Tipbit on iPhone: this week's take-home on Home, a shift being logged, every day's total on the calendar, Insights, the schedule, a trip's miles on a map, The year, and Home in the dark look.">
+      <div class="scroller" tabindex="0" role="region" aria-label="The App Store's eight pictures, side by side; scroll sideways">
+        <div class="scene">
+          <!-- The App Store's pictures as one scene (img/strip.jpg, made with the store pictures). -->
+          <picture>
+            <source type="image/avif" srcset="img/strip-2640.avif 2640w, img/strip-3960.avif 3960w, img/strip-5280.avif 5280w" sizes="(max-width: 600px) 880px, (min-width: 1305px) 2209px, (min-width: 740px) 169vw, 1252px">
+            <source type="image/webp" srcset="img/strip-2640.webp 2640w, img/strip-3960.webp 3960w, img/strip-5280.webp 5280w" sizes="(max-width: 600px) 880px, (min-width: 1305px) 2209px, (min-width: 740px) 169vw, 1252px">
+            <img src="img/strip.jpg" srcset="img/strip-2640.jpg 2640w, img/strip-3960.jpg 3960w, img/strip.jpg 5280w" sizes="(max-width: 600px) 880px, (min-width: 1305px) 2209px, (min-width: 740px) 169vw, 1252px" width="5280" height="1434" loading="lazy" decoding="async" alt="Tipbit on iPhone, eight pictures: Every tip, every shift, this week's take-home on Home; Log a shift in seconds, the entry sheet; Every day's total on the calendar; Know your best days, Insights; Plan your week, the schedule; Miles counted as you drive, a trip with its route on a map; Ready for tax time, The year; Yours alone, Home in the dark look.">
+          </picture>
+          <span class="snap" style="left:0"></span><span class="snap" style="left:12.5%"></span><span class="snap" style="left:25%"></span><span class="snap" style="left:37.5%"></span><span class="snap" style="left:50%"></span><span class="snap" style="left:62.5%"></span><span class="snap" style="left:75%"></span><span class="snap" style="left:87.5%"></span>
+        </div>
       </div>
-      <figcaption>Scroll sideways for the whole tour.</figcaption>
+      <figcaption>The App Store's eight pictures as one scene. Scroll sideways for the whole tour.</figcaption>
     </figure>
   </section>
 
-  <section class="section">
+  <section class="section features" aria-labelledby="what-h">
     <div class="wrap">
       <p class="label">What it does</p>
-      <h2>Made for pay that changes every day.</h2>
-      <p>For servers and bartenders first, and for anyone paid by the job: drivers, stylists, inspectors, crews.</p>
-      <p>And on Apple Watch: today's total and your goal's ring, tips logged with a tap or on a number pad, the clock,
-      and your next shift.</p>
-      <div class="cards four">
-        <div class="card">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg></div>
-          <h3>Log it in seconds</h3>
-          <p>Cash and card tips, tip-out and hours, or your usual shift in one tap. Each job asks only for what it pays.</p>
+      <h2 id="what-h">Made for pay that changes every day.</h2>
+      <p class="lede">For servers and bartenders first, and for anyone paid by the job: drivers, stylists, inspectors,
+      crews. Each job asks only for what it pays: hourly, tips, per job, delivery pay, commission or a day rate, or a
+      mix.</p>
+
+      <article class="feature reveal" aria-labelledby="f-entry">
+        <div class="words">
+          <p class="label">New entry</p>
+          <h2 id="f-entry">Log a shift in seconds.</h2>
+          <p>Cash tips, card tips, tip-out and hours: four numbers and you're done. Macros log your usual shift or job
+          in one tap. Clock in and out, or just type the hours.</p>
+          <ul>
+            <li>Your take-home and real hourly rate on every entry</li>
+            <li>Tip-out worked out from your job's rules, a percent of sales or of tips</li>
+            <li>A reminder to log it when a planned shift ends</li>
+          </ul>
         </div>
-        <div class="card">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div>
-          <h3>The truth about your pay</h3>
-          <p>Your take-home and real hourly rate on every entry, tip-out from your job's rules, overtime counted for you.</p>
+        <div class="shot">
+          <picture class="screen">
+            <source type="image/avif" srcset="img/s/entry-440.avif 440w, img/s/entry-660.avif 660w, img/s/entry-990.avif 990w" sizes="min(72vw, 302px)">
+            <source type="image/webp" srcset="img/s/entry-440.webp 440w, img/s/entry-660.webp 660w, img/s/entry-990.webp 990w" sizes="min(72vw, 302px)">
+            <img src="img/s/entry-660.jpg" srcset="img/s/entry-440.jpg 440w, img/s/entry-660.jpg 660w, img/s/entry-990.jpg 990w" sizes="min(72vw, 302px)" width="990" height="2151" loading="lazy" decoding="async" alt="The entry sheet for a dinner shift at Lucia's Trattoria: take-home $303.50, from $295.50 in tips less $28 tip-out plus $36 wage, $50.58 an hour; cash tips $64, card tips $231.50, tip-out $28, 6 hours.">
+          </picture>
+          <picture class="piece bl w32">
+            <source type="image/avif" srcset="img/p/dinner-230.avif 230w, img/p/dinner-346.avif 346w" sizes="min(32vw, 134px)">
+            <source type="image/webp" srcset="img/p/dinner-230.webp 230w, img/p/dinner-346.webp 346w" sizes="min(32vw, 134px)">
+            <img src="img/p/dinner-346.png" width="346" height="156" loading="lazy" decoding="async" alt="The Dinner macro's chip: a 6-hour shift, logged in one tap.">
+          </picture>
         </div>
-        <div class="card">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div>
-          <h3>Every day on the calendar</h3>
-          <p>Each day's total on the month, pay periods that show what's unpaid, and a schedule for the week ahead.</p>
+      </article>
+
+      <article class="feature reveal" aria-labelledby="f-truth">
+        <div class="words">
+          <p class="label">The truth about your pay</p>
+          <h2 id="f-truth">Your real hourly rate, not a guess.</h2>
+          <p>Every entry shows what you took home and what that made an hour. Your tips as a percent of sales. Overtime
+          counted for you, by the week or by the day.</p>
+          <ul>
+            <li>A weekly goal, and how far you are from it</li>
+            <li>Pay periods show what's paid and what's unpaid, with a summary to share</li>
+            <li>Search every entry by claim number, client or note</li>
+          </ul>
         </div>
-        <div class="card">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="6" r="2.5"/><path d="M8.5 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h6.5"/></svg></div>
-          <h3>Miles and expenses</h3>
-          <p>Miles at the IRS rate for the day you drove, expenses with a photo of the receipt, and The year for tax time.</p>
+        <div class="shot collage">
+          <picture class="piece">
+            <source type="image/avif" srcset="img/p/chart-640.avif 640w, img/p/chart-960.avif 960w" sizes="min(100vw - 40px, 440px)">
+            <source type="image/webp" srcset="img/p/chart-640.webp 640w, img/p/chart-960.webp 960w" sizes="min(100vw - 40px, 440px)">
+            <img src="img/p/chart-960.png" width="960" height="603" loading="lazy" decoding="async" alt="Home's This week card: the week day by day as bars, Friday the tallest.">
+          </picture>
+          <picture class="piece">
+            <source type="image/avif" srcset="img/p/day-640.avif 640w, img/p/day-960.avif 960w" sizes="min(100vw - 40px, 440px)">
+            <source type="image/webp" srcset="img/p/day-640.webp 640w, img/p/day-960.webp 960w" sizes="min(100vw - 40px, 440px)">
+            <img src="img/p/day-960.png" width="960" height="416" loading="lazy" decoding="async" alt="A day's card, Thursday, Oct 22, $270.25: Dinner, 3:30 to 9:30 PM, 6 hours, $211.50; Lunch run, 11:00 AM to 2:00 PM, 3 hours and 27.5 miles, $58.75.">
+          </picture>
+          <picture class="piece float-tr w34">
+            <source type="image/avif" srcset="img/p/perhour-260.avif 260w, img/p/perhour-388.avif 388w" sizes="min(34vw, 150px)">
+            <source type="image/webp" srcset="img/p/perhour-260.webp 260w, img/p/perhour-388.webp 388w" sizes="min(34vw, 150px)">
+            <img src="img/p/perhour-388.png" width="388" height="222" loading="lazy" decoding="async" alt="Home's Per hour tile: $31.72.">
+          </picture>
         </div>
+      </article>
+
+      <article class="feature reveal" aria-labelledby="f-calendar">
+        <div class="words">
+          <p class="label">History</p>
+          <h2 id="f-calendar">Every day's total, on the calendar.</h2>
+          <p>Each day's total right on the month. Tap a day to see what you made and how. A dot says what else the day
+          held: a trip, or something you spent.</p>
+          <ul>
+            <li>Entries, pay periods and expenses, each on its own page</li>
+            <li>Each day's entries under the month, with their hours and miles</li>
+          </ul>
+        </div>
+        <div class="shot">
+          <picture class="screen">
+            <source type="image/avif" srcset="img/s/calendar-440.avif 440w, img/s/calendar-660.avif 660w, img/s/calendar-990.avif 990w" sizes="min(72vw, 302px)">
+            <source type="image/webp" srcset="img/s/calendar-440.webp 440w, img/s/calendar-660.webp 660w, img/s/calendar-990.webp 990w" sizes="min(72vw, 302px)">
+            <img src="img/s/calendar-660.jpg" srcset="img/s/calendar-440.jpg 440w, img/s/calendar-660.jpg 660w, img/s/calendar-990.jpg 990w" sizes="min(72vw, 302px)" width="990" height="2151" loading="lazy" decoding="async" alt="History's calendar for October 2026, $5,917.00 over 37 entries: each day's total on its square, darker the more it made, with Thursday, Oct 22's two entries listed under the month.">
+          </picture>
+        </div>
+      </article>
+
+      <article class="feature reveal" aria-labelledby="f-schedule">
+        <div class="words">
+          <p class="label">Schedule</p>
+          <h2 id="f-schedule">Plan your week.</h2>
+          <p>Plan shifts Mon–Fri, on weekends or on any days you pick, and see what the rest of the month should pay
+          at your average. Appointments keep their claim number and client.</p>
+          <ul>
+            <li>Your next shift on Home, and on your watch</li>
+            <li>A planned shift logged with one tap once it's over</li>
+          </ul>
+        </div>
+        <div class="shot">
+          <picture class="screen">
+            <source type="image/avif" srcset="img/s/schedule-440.avif 440w, img/s/schedule-660.avif 660w, img/s/schedule-990.avif 990w" sizes="min(72vw, 302px)">
+            <source type="image/webp" srcset="img/s/schedule-440.webp 440w, img/s/schedule-660.webp 660w, img/s/schedule-990.webp 990w" sizes="min(72vw, 302px)">
+            <img src="img/s/schedule-660.jpg" srcset="img/s/schedule-440.jpg 440w, img/s/schedule-660.jpg 660w, img/s/schedule-990.jpg 990w" sizes="min(72vw, 302px)" width="990" height="2151" loading="lazy" decoding="async" alt="The Schedule: 15 more shifts planned, about $2,820 at your average; today's dinner at Lucia's Trattoria, logged; Sunday's brunch and the week's dinners ahead.">
+          </picture>
+          <picture class="piece br w62">
+            <source type="image/avif" srcset="img/p/days-640.avif 640w, img/p/days-960.avif 960w" sizes="min(62vw, 260px)">
+            <source type="image/webp" srcset="img/p/days-640.webp 640w, img/p/days-960.webp 960w" sizes="min(62vw, 260px)">
+            <img src="img/p/days-960.png" width="960" height="362" loading="lazy" decoding="async" alt="A plan's Days: Mon–Fri picked, with Weekends and Every day beside it, and the seven days as round chips.">
+          </picture>
+        </div>
+      </article>
+
+      <article class="feature reveal" aria-labelledby="f-insights">
+        <div class="words">
+          <p class="label">Insights <span class="pro">Pro</span></p>
+          <h2 id="f-insights">Know your best days.</h2>
+          <p>Your weeks and months, what you made and what you kept, your average week and your real hourly rate over
+          time. With Tipbit Pro: your best days, cash vs. card, by job, and your personal bests.</p>
+        </div>
+        <div class="shot">
+          <picture class="screen">
+            <source type="image/avif" srcset="img/s/insights-440.avif 440w, img/s/insights-660.avif 660w, img/s/insights-990.avif 990w" sizes="min(72vw, 302px)">
+            <source type="image/webp" srcset="img/s/insights-440.webp 440w, img/s/insights-660.webp 660w, img/s/insights-990.webp 990w" sizes="min(72vw, 302px)">
+            <img src="img/s/insights-660.jpg" srcset="img/s/insights-440.jpg 440w, img/s/insights-660.jpg 660w, img/s/insights-990.jpg 990w" sizes="min(72vw, 302px)" width="990" height="2151" loading="lazy" decoding="async" alt="Insights over three months: you made $17,242.50 and kept $16,580.80; $1,326.35 a week, $156.75 an entry, $30.40 an hour; the weeks as bars; Spent, $661.70, by category.">
+          </picture>
+          <picture class="piece bl w64">
+            <source type="image/avif" srcset="img/p/bestdays-640.avif 640w, img/p/bestdays-960.avif 960w" sizes="min(64vw, 270px)">
+            <source type="image/webp" srcset="img/p/bestdays-640.webp 640w, img/p/bestdays-960.webp 960w" sizes="min(64vw, 270px)">
+            <img src="img/p/bestdays-960.png" width="960" height="566" loading="lazy" decoding="async" alt="Best days: Fridays pay best, $262.69 on average, each weekday as a bar.">
+          </picture>
+        </div>
+      </article>
+
+      <article class="feature reveal" aria-labelledby="f-trips">
+        <div class="words">
+          <p class="label">Trips <span class="pro">Pro</span></p>
+          <h2 id="f-trips">Miles counted as you drive.</h2>
+          <p>Miles at the IRS rate for the day you drove, or at your own rate. With Tipbit Pro, tap Start trip and
+          Tipbit counts the miles until you tap Stop, with the route on a map. It never tracks miles on its own.</p>
+          <ul>
+            <li>Type the miles on any entry, free</li>
+            <li>What they're worth beside them, never added to your pay unless your job pays you back for them</li>
+          </ul>
+        </div>
+        <div class="shot">
+          <picture class="screen">
+            <source type="image/avif" srcset="img/s/trip-440.avif 440w, img/s/trip-660.avif 660w, img/s/trip-990.avif 990w" sizes="min(72vw, 302px)">
+            <source type="image/webp" srcset="img/s/trip-440.webp 440w, img/s/trip-660.webp 660w, img/s/trip-990.webp 990w" sizes="min(72vw, 302px)">
+            <img src="img/s/trip-660.jpg" srcset="img/s/trip-440.jpg 440w, img/s/trip-660.jpg 660w, img/s/trip-990.jpg 990w" sizes="min(72vw, 302px)" width="990" height="2151" loading="lazy" decoding="async" alt="A delivery entry: $63.00 take-home from $39 pay and $24 in tips, $21.00 an hour, 3 hours from 11:00 AM to 2:00 PM, 6.5 miles worth $4.94, not added, with the route on a map.">
+          </picture>
+          <picture class="piece tr w70">
+            <source type="image/avif" srcset="img/p/tripbanner-640.avif 640w, img/p/tripbanner-960.avif 960w" sizes="min(70vw, 294px)">
+            <source type="image/webp" srcset="img/p/tripbanner-640.webp 640w, img/p/tripbanner-960.webp 960w" sizes="min(70vw, 294px)">
+            <img src="img/p/tripbanner-960.png" width="960" height="132" loading="lazy" decoding="async" alt="Home's banner while a trip runs: On a trip, 6.5 miles, 2 hours 42 minutes, Deliveries, with a Stop button.">
+          </picture>
+        </div>
+      </article>
+
+      <article class="feature reveal" aria-labelledby="f-year">
+        <div class="words">
+          <p class="label">The year <span class="pro">Pro</span></p>
+          <h2 id="f-year">Ready for tax time.</h2>
+          <p>The year at a glance: tips, wages and overtime, other pay, miles and spending. Expenses by category, with
+          a photo of the receipt, and what you kept after what you spent.</p>
+          <ul>
+            <li>With Tipbit Pro, statements and a year summary as PDFs, and a spreadsheet of your entries and expenses</li>
+            <li>Totals of what you logged, never tax advice</li>
+          </ul>
+        </div>
+        <div class="shot">
+          <picture class="screen">
+            <source type="image/avif" srcset="img/s/year-440.avif 440w, img/s/year-660.avif 660w, img/s/year-990.avif 990w" sizes="min(72vw, 302px)">
+            <source type="image/webp" srcset="img/s/year-440.webp 440w, img/s/year-660.webp 660w, img/s/year-990.webp 990w" sizes="min(72vw, 302px)">
+            <img src="img/s/year-660.jpg" srcset="img/s/year-440.jpg 440w, img/s/year-660.jpg 660w, img/s/year-990.jpg 990w" sizes="min(72vw, 302px)" width="990" height="2151" loading="lazy" decoding="async" alt="The year: made in 2026, $57,464.00 over 386 entries and 1,837 hours 30 minutes, by job; tips in cash, card and not split, total tips and tip-out; wages; a Year summary (PDF) button.">
+          </picture>
+          <picture class="piece paper br w44">
+            <source type="image/avif" srcset="img/p/paper-480.avif 480w, img/p/paper-720.avif 720w" sizes="min(44vw, 185px)">
+            <source type="image/webp" srcset="img/p/paper-480.webp 480w, img/p/paper-720.webp 720w" sizes="min(44vw, 185px)">
+            <img src="img/p/paper-720.jpg" width="720" height="932" loading="lazy" decoding="async" alt="The year summary's first page, a PDF: 2026, made, tips, wages, other pay and miles, each with its lines and totals.">
+          </picture>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section devices" aria-labelledby="devices-h">
+    <div class="wrap">
+      <p class="label">Everywhere you are</p>
+      <h2 id="devices-h">On your iPhone, iPad and Apple Watch.</h2>
+      <p class="lede">Your entries stay in step through your own iCloud on every iPhone, iPad and Mac signed in to the
+      same Apple Account, with nothing to set up. Light and dark on iPhone and iPad.</p>
+      <div class="ipad-shot reveal">
+        <picture class="screen ipad">
+          <source type="image/avif" srcset="img/s/ipad-home-820.avif 820w, img/s/ipad-home-1240.avif 1240w, img/s/ipad-home-1860.avif 1860w" sizes="min(100vw - 40px, 980px)">
+          <source type="image/webp" srcset="img/s/ipad-home-820.webp 820w, img/s/ipad-home-1240.webp 1240w, img/s/ipad-home-1860.webp 1860w" sizes="min(100vw - 40px, 980px)">
+          <img src="img/s/ipad-home-1240.jpg" srcset="img/s/ipad-home-820.jpg 820w, img/s/ipad-home-1240.jpg 1240w, img/s/ipad-home-1860.jpg 1860w" sizes="min(100vw - 40px, 980px)" width="1860" height="1395" loading="lazy" decoding="async" alt="Tipbit on an iPad, landscape: the sidebar with Home, Schedule, History and Insights; this week's $1,284.50 against a $1,500 goal; Quick add; Per hour $31.72, 8 shifts, $160.56 a shift; the week day by day; and the recent entries beside them.">
+        </picture>
+      </div>
+      <h3 class="label" style="margin-top:40px">On Apple Watch</h3>
+      <p class="lede">Today's total, your week and your goal's ring at a glance. Log a shift with a tap, or type the
+      tips on a number pad. Clock in and out on your wrist, one clock with your iPhone. Your next shift and your last
+      five entries, and the week's total and your goal's ring on the watch face.</p>
+      <div class="watch-row reveal">
+        <figure>
+          <picture>
+            <source type="image/avif" srcset="img/w/watch-1-422.avif">
+            <source type="image/webp" srcset="img/w/watch-1-422.webp">
+            <img src="img/w/watch-1-422.png" width="422" height="514" loading="lazy" decoding="async" alt="The watch's Today page: $303.50 inside the goal's ring, Week $1,284.50, $215.50 to go, $31.72 an hour.">
+          </picture>
+          <figcaption>Today, with your goal's ring</figcaption>
+        </figure>
+        <figure>
+          <picture>
+            <source type="image/avif" srcset="img/w/watch-3-422.avif">
+            <source type="image/webp" srcset="img/w/watch-3-422.webp">
+            <img src="img/w/watch-3-422.png" width="422" height="514" loading="lazy" decoding="async" alt="The watch's number pad: Card tips, 2 of 3, $231.50 typed, take-home $331.50 so far, and Next.">
+          </picture>
+          <figcaption>Tips on a number pad</figcaption>
+        </figure>
+        <figure>
+          <picture>
+            <source type="image/avif" srcset="img/w/watch-4-422.avif">
+            <source type="image/webp" srcset="img/w/watch-4-422.webp">
+            <img src="img/w/watch-4-422.png" width="422" height="514" loading="lazy" decoding="async" alt="The watch's Clock page: Lucia's Trattoria, 2 hours 14 minutes since 2:40 PM, and Clock out.">
+          </picture>
+          <figcaption>One clock with your iPhone</figcaption>
+        </figure>
+        <figure>
+          <picture>
+            <source type="image/avif" srcset="img/w/watch-6-422.avif">
+            <source type="image/webp" srcset="img/w/watch-6-422.webp">
+            <img src="img/w/watch-6-422.png" width="422" height="514" loading="lazy" decoding="async" alt="A watch face with Tipbit's complications: $1.2K this week in the corner, and the goal's ring with $1.2K inside it.">
+          </picture>
+          <figcaption>The week on your watch face</figcaption>
+        </figure>
       </div>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" aria-labelledby="private-h">
     <div class="wrap">
-      <p class="label">Private</p>
-      <h2>Yours alone.</h2>
-      <p>No sign-up, no ads, no tracking. Your entries stay on your devices and in your own iCloud, never on a server of
-      ours. The <a href="privacy.html">privacy policy</a> says exactly what goes where.</p>
+      <article class="feature reveal private-feature">
+        <div class="words">
+          <p class="label">Private</p>
+          <h2 id="private-h">Yours alone.</h2>
+          <p>No account to make, no ads, no tracking. Your entries stay on your devices and in your own iCloud, never
+          on a server of ours. The <a href="privacy.html">privacy policy</a> says exactly what goes where.</p>
+          <ul>
+            <li>No sign-up and no Tipbit account</li>
+            <li>No ads, no analytics and no third-party code</li>
+            <li>Sync through your own private iCloud only</li>
+          </ul>
+        </div>
+        <div class="shot">
+          <picture class="screen">
+            <source type="image/avif" srcset="img/s/home-dark-440.avif 440w, img/s/home-dark-660.avif 660w, img/s/home-dark-990.avif 990w" sizes="min(72vw, 302px)">
+            <source type="image/webp" srcset="img/s/home-dark-440.webp 440w, img/s/home-dark-660.webp 660w, img/s/home-dark-990.webp 990w" sizes="min(72vw, 302px)">
+            <img src="img/s/home-dark-660.jpg" srcset="img/s/home-dark-440.jpg 440w, img/s/home-dark-660.jpg 660w, img/s/home-dark-990.jpg 990w" sizes="min(72vw, 302px)" width="990" height="2151" loading="lazy" decoding="async" alt="Home in the dark look: this week's $1,284.50, 86% of the $1,500 goal, Quick add, and the week day by day.">
+          </picture>
+          <picture class="piece bl w90">
+            <source type="image/avif" srcset="img/p/icloud-640.avif 640w, img/p/icloud-960.avif 960w" sizes="min(90vw, 378px)">
+            <source type="image/webp" srcset="img/p/icloud-640.webp 640w, img/p/icloud-960.webp 960w" sizes="min(90vw, 378px)">
+            <img src="img/p/icloud-960.png" width="960" height="306" loading="lazy" decoding="async" alt="Settings' iCloud sync row, On: your entries are saved to your own iCloud and stay in step on every iPhone, iPad and Mac signed in to your Apple Account. A new iPhone gets them back on its own. No sign-up, no ads, no tracking.">
+          </picture>
+        </div>
+      </article>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" id="pro" aria-labelledby="pro-h">
     <div class="wrap">
       <p class="label">Free and Pro</p>
-      <h2>Free to use. Pro when you want more.</h2>
-      <div class="pro">
-        <div class="card">
+      <h2 id="pro-h">Free to use. Pro when you want more.</h2>
+      <p class="lede">Everything you log is free, with no limit on entries. Tipbit Pro adds more jobs, more macros and
+      the extras. If you ever cancel, everything you made stays.</p>
+      <div class="plans reveal">
+        <div class="plan">
           <p class="label">Free, for good</p>
+          <h3>Tipbit</h3>
           <ul>
             <li>Every entry, with no limit</li>
             <li>One job and two macros</li>
-            <li>The weekly goal, History and the calendar</li>
+            <li>The weekly goal, History with search and the calendar</li>
             <li>Pay periods, the schedule and overtime</li>
             <li>Expenses, typed miles and The year</li>
             <li>Sync with your own iCloud</li>
           </ul>
         </div>
-        <div class="card">
+        <div class="plan pro">
           <p class="label">Tipbit Pro</p>
+          <h3>Everything in Tipbit, and</h3>
           <ul>
             <li>Every job, and unlimited macros</li>
-            <li>The full Insights: best days, cash vs. card, personal bests</li>
+            <li>The full Insights: best days, cash vs. card, by job, personal bests</li>
             <li>The trip tracker, with your route on a map</li>
-            <li>Statements as PDFs, and a spreadsheet</li>
+            <li>Statements and a year summary as PDFs</li>
+            <li>A spreadsheet of your entries and expenses</li>
             <li>Six colors for the app</li>
-            <li>Two weeks free on the yearly or monthly plan</li>
           </ul>
+        </div>
+      </div>
+      <div class="prices reveal">
+        <div class="price best">
+          <p class="label">Yearly</p>
+          <p class="amount">$19.99<small> a year</small></p>
+          <p class="note">Two weeks free, then $19.99 a year</p>
+        </div>
+        <div class="price">
+          <p class="label">Monthly</p>
+          <p class="amount">$2.99<small> a month</small></p>
+          <p class="note">Two weeks free, then $2.99 a month</p>
+        </div>
+        <div class="price">
+          <p class="label">Once</p>
+          <p class="amount">$49.99<small> one time</small></p>
+          <p class="note">Yours for good, no subscription</p>
+        </div>
+      </div>
+      <p class="small">Prices in US dollars; they differ by country. The two free weeks come once, on either
+      subscription. A subscription renews until you cancel it in your Apple Account settings; if you cancel, everything
+      you made stays, and the extras lock until you subscribe again.</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="help-h">
+    <div class="wrap">
+      <p class="label">Questions</p>
+      <h2 id="help-h">Short answers, and a person to write to.</h2>
+      <p class="lede">How sync works, a new phone, the free weeks and cancelling, miles and the IRS rate, getting your
+      numbers out: the support page answers what people ask most.</p>
+      <div class="help-card">
+        <div class="row">
+          <a class="pill" href="support.html">Support</a>
+          <a class="pill quiet" href="mailto:tipbit@3dlibrary.app">tipbit@3dlibrary.app</a>
         </div>
       </div>
     </div>

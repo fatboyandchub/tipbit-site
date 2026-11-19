@@ -1,56 +1,137 @@
-/* Tipbit's site, in the app's look: the hero's aurora (the Emerald theme's own nine colors, Theme.swift), the money
-   font (the system's rounded face, heavy), the ink (#232830) on a light page, white on a dark one. No scripts, no
-   web fonts, nothing from another site. */
+/* Tipbit's site, in the app's look (DESIGN.md): the hero's aurora (the Emerald theme's own nine colors), the money
+   font (the system's rounded face, heavy), the ink (#232830, never black) on a light page and white on a dark one,
+   content on plain cards, glass only for what floats. No scripts, no web fonts, nothing loaded from another site. */
 
 :root {
   color-scheme: light dark;
   --page: #f2f2f7;
   --card: #ffffff;
+  --card-2: #f7f7fa;
   --ink: #232830;
   --ink-2: rgba(35, 40, 48, 0.68);
-  --ink-3: rgba(35, 40, 48, 0.36);
+  --ink-3: rgba(35, 40, 48, 0.42);
   --line: rgba(35, 40, 48, 0.12);
   --accent: #059669;
+  --accent-soft: rgba(5, 150, 105, 0.12);
   --link: #047857;
-  --rounded: ui-rounded, "SF Pro Rounded", "SF Pro Display", -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI",
-    Roboto, sans-serif;
+  --on-aurora: #ffffff;
+  --on-aurora-2: rgba(255, 255, 255, 0.84);
+  --shadow-screen: 0 36px 70px -28px rgba(2, 44, 34, 0.5), 0 12px 28px -14px rgba(2, 44, 34, 0.28);
+  --shadow-piece: drop-shadow(0 18px 28px rgba(2, 44, 34, 0.28)) drop-shadow(0 2px 6px rgba(2, 44, 34, 0.12));
+  --shadow-card: 0 1px 0 rgba(35, 40, 48, 0.04), 0 8px 24px -16px rgba(35, 40, 48, 0.18);
+  --radius: 24px;
+  --rounded: ui-rounded, "SF Pro Rounded", -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;
   --text: -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --gutter: max(20px, env(safe-area-inset-left), env(safe-area-inset-right));
+  --wrap: 1120px;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --page: #000000;
     --card: #1c1c1e;
+    --card-2: #2c2c2e;
     --ink: #ffffff;
     --ink-2: rgba(235, 235, 245, 0.66);
-    --ink-3: rgba(235, 235, 245, 0.32);
-    --line: rgba(255, 255, 255, 0.12);
+    --ink-3: rgba(235, 235, 245, 0.4);
+    --line: rgba(255, 255, 255, 0.14);
     --accent: #34d399;
+    --accent-soft: rgba(52, 211, 153, 0.16);
     --link: #34d399;
+    --shadow-screen: 0 36px 70px -28px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.12);
+    --shadow-piece: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 1px rgba(255, 255, 255, 0.25));
+    --shadow-card: 0 0 0 1px rgba(255, 255, 255, 0.06);
   }
 }
 
+/* The phone's Increase Contrast: pure black and white, as the app does; stronger lines; links underlined. */
+@media (prefers-contrast: more) {
+  :root {
+    --ink: #000000;
+    --ink-2: rgba(0, 0, 0, 0.82);
+    --ink-3: rgba(0, 0, 0, 0.64);
+    --line: rgba(0, 0, 0, 0.4);
+    --link: #065f46;
+    --on-aurora-2: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink: #ffffff;
+      --ink-2: rgba(255, 255, 255, 0.86);
+      --ink-3: rgba(255, 255, 255, 0.7);
+      --line: rgba(255, 255, 255, 0.45);
+      --link: #6ee7b7;
+    }
+  }
+  .card, .plan, .price { border: 1px solid var(--line); }
+  a { text-decoration: underline; }
+}
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 body {
   font-family: var(--text);
   background: var(--page);
   color: var(--ink);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+  min-height: 100%;
 }
-a { color: var(--link); text-underline-offset: 3px; }
-a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
-img { max-width: 100%; }
+a { color: var(--link); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+img, picture, svg { display: block; max-width: 100%; }
+picture img { width: 100%; height: auto; }
+strong, b { font-weight: 650; }
+ul, ol { padding-left: 1.3em; }
 
-/* The aurora: deep emerald with mint and teal glows drifting slowly, as the app's hero does; still under Reduce Motion. */
+.skip {
+  position: absolute;
+  left: 16px;
+  top: -200px;
+  z-index: 100;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--link);
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+}
+.skip:focus { top: 16px; }
+
+.wrap { max-width: var(--wrap); margin: 0 auto; padding-left: var(--gutter); padding-right: var(--gutter); }
+
+/* The small caps label above a big line, as the app writes "THIS WEEK". */
+.label {
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--link);
+}
+.label .pro {
+  display: inline-block;
+  vertical-align: 1px;
+  margin-left: 8px;
+  padding: 1px 8px 2px;
+  border-radius: 999px;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  background: var(--accent);
+  color: #ffffff;
+}
+@media (prefers-color-scheme: dark) { .label .pro { color: #04281c; } }
+
+/* ----- The aurora: deep emerald with mint and teal glows drifting slowly, as Home's hero does; still under Reduce Motion. */
 .aurora {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  color: #ffffff;
+  color: var(--on-aurora);
   background: linear-gradient(160deg, #065f46 0%, #064e3b 45%, #0f766e 80%, #134e4a 100%);
-  border-radius: 0 0 36px 36px;
 }
 .aurora::before {
   content: "";
@@ -64,6 +145,7 @@ img { max-width: 100%; }
     radial-gradient(40% 40% at 8% 92%, rgba(15, 118, 110, 0.7) 0%, rgba(15, 118, 110, 0) 70%),
     radial-gradient(36% 36% at 30% 8%, rgba(4, 120, 87, 0.7) 0%, rgba(4, 120, 87, 0) 70%);
   animation: drift 28s ease-in-out infinite alternate;
+  will-change: transform;
 }
 /* A whisper of grain, so the glows never band. */
 .aurora::after {
@@ -73,6 +155,7 @@ img { max-width: 100%; }
   z-index: -1;
   opacity: 0.07;
   mix-blend-mode: overlay;
+  pointer-events: none;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
 @keyframes drift {
@@ -83,203 +166,397 @@ img { max-width: 100%; }
 @media (prefers-reduced-motion: reduce) {
   .aurora::before { animation: none; }
 }
+.aurora .label { color: rgba(209, 250, 229, 0.94); }
+.aurora a:focus-visible { outline-color: #ffffff; }
 
-.wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
-.narrow { max-width: 680px; margin: 0 auto; padding: 0 24px; }
-
-/* The small caps label above a big line, as the app writes "THIS WEEK". */
-.label {
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+/* ----- The top bar, on every page. */
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 48px;
+  padding-top: max(14px, env(safe-area-inset-top));
 }
-.aurora .label { color: rgba(209, 250, 229, 0.92); }
-
 .home {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  color: #ffffff;
+  color: inherit;
   text-decoration: none;
   font-family: var(--rounded);
   font-weight: 800;
   font-size: 1.15rem;
   letter-spacing: -0.01em;
 }
-.home img { width: 34px; height: 34px; border-radius: 8px; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18); }
+.home img { width: 34px; height: 34px; border-radius: 9px; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.22), 0 4px 12px rgba(0, 0, 0, 0.25); }
 .home:hover span { text-decoration: underline; text-underline-offset: 4px; }
-.home:focus-visible { outline: 2px solid #ffffff; outline-offset: 4px; border-radius: 10px; }
+.home:focus-visible { outline-offset: 5px; border-radius: 12px; }
+.top .links { display: flex; gap: 6px; }
+.top .links a {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 8px 12px;
+  border-radius: 999px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+.top .links a:hover { background: rgba(255, 255, 255, 0.14); }
+.top .links a[aria-current="page"] { background: rgba(255, 255, 255, 0.18); }
 
-/* The front page's hero. */
-.hero { padding-top: 28px; padding-bottom: 56px; }
-.hero nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-.hero nav .links { display: flex; gap: 20px; font-weight: 600; font-size: 0.95rem; }
-.hero nav .links a { color: rgba(255, 255, 255, 0.88); text-decoration: none; }
-.hero nav .links a:hover { color: #ffffff; text-decoration: underline; }
-.hero nav .links a:focus-visible { outline-color: #ffffff; }
-.hero .intro { display: grid; gap: 40px; align-items: center; margin-top: 52px; }
-@media (min-width: 860px) { .hero .intro { grid-template-columns: 1.15fr 0.85fr; } }
+/* ----- The front page's hero: the words, and Home's own screen standing in the band. */
+.hero { border-radius: 0 0 36px 36px; }
+.hero-grid { display: grid; gap: 36px; margin-top: 36px; align-items: end; }
 .hero h1 {
   font-family: var(--rounded);
   font-weight: 900;
-  font-size: clamp(2.7rem, 8.4vw, 4.6rem);
+  font-size: clamp(2.4rem, 8vw, 4.7rem);
   line-height: 1.02;
   letter-spacing: -0.035em;
   margin-top: 12px;
+  text-wrap: balance;
   text-shadow: 0 2px 24px rgba(2, 44, 34, 0.35);
 }
 .hero .line {
-  font-size: clamp(1.08rem, 2.6vw, 1.3rem);
+  font-size: clamp(1.08rem, 2.4vw, 1.28rem);
   line-height: 1.5;
-  color: rgba(255, 255, 255, 0.86);
-  max-width: 32em;
+  color: var(--on-aurora-2);
+  max-width: 30em;
   margin-top: 18px;
+  text-wrap: pretty;
 }
-.soon {
+.hero-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 28px; }
+.soon, .btn {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  margin-top: 30px;
-  padding: 12px 20px;
+  min-height: 48px;
+  padding: 10px 20px;
   border-radius: 999px;
   font-weight: 700;
   font-size: 1rem;
   color: #ffffff;
+  text-decoration: none;
   background: rgba(255, 255, 255, 0.14);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.32);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
 }
-.soon svg { width: 18px; height: 18px; flex: none; }
+.soon svg, .btn svg { width: 18px; height: 18px; flex: none; }
+.btn:hover { background: rgba(255, 255, 255, 0.24); }
+.hero-facts {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin-top: 26px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--on-aurora-2);
+}
+.hero-facts li { display: inline-flex; align-items: center; gap: 7px; }
+.hero-facts svg { width: 16px; height: 16px; color: #a7f3d0; }
+.hero-words { padding-bottom: 8px; }
 
-/* The week's total, the way Home's hero shows it: a sample, made up. */
-.glance {
-  justify-self: center;
-  width: min(100%, 340px);
-  padding: 22px 24px 24px;
+/* The screen: the app's own, flat, with the phone screen's rounded corners and a soft shadow (no drawn device). */
+.screen {
+  display: block;
+  container-type: inline-size;
   border-radius: 28px;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.24);
-  box-shadow: 0 24px 60px rgba(2, 44, 34, 0.35);
-  -webkit-backdrop-filter: blur(16px);
-  backdrop-filter: blur(16px);
+  border-radius: clamp(18px, 13.5cqw, 64px);
+  overflow: hidden;
+  box-shadow: var(--shadow-screen);
+  background: var(--card);
 }
-.glance .total {
-  font-family: var(--rounded);
-  font-weight: 900;
-  font-size: 3.4rem;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
-  margin-top: 6px;
-  font-variant-numeric: tabular-nums;
-}
-.glance .total small { font-size: 0.5em; letter-spacing: -0.01em; }
-.glance .bar { height: 10px; border-radius: 999px; background: rgba(255, 255, 255, 0.22); margin-top: 18px; overflow: hidden; }
-.glance .bar span { display: block; height: 100%; width: 74%; border-radius: inherit; background: #ffffff; }
-.glance .goal { display: flex; justify-content: space-between; font-size: 0.92rem; color: rgba(255, 255, 255, 0.86); margin-top: 8px; }
-.glance .rows { margin-top: 18px; display: grid; gap: 10px; }
-.glance .row { display: flex; justify-content: space-between; gap: 12px; font-size: 0.95rem; }
-.glance .row b { font-family: var(--rounded); font-weight: 800; font-variant-numeric: tabular-nums; }
-.glance .note { margin-top: 14px; font-size: 0.78rem; color: rgba(255, 255, 255, 0.7); }
+.screen img { width: 100%; height: auto; }
+.screen.ipad { border-radius: 16px; border-radius: clamp(10px, 2.2cqw, 28px); }
+.piece { position: absolute; filter: var(--shadow-piece); }
+.piece img { width: 100%; height: auto; }
 
-/* The store's pictures as one strip, sideways on a phone. */
-.strip { margin-top: 56px; }
-.strip .scroller {
+.hero-shot {
+  position: relative;
+  width: min(100%, 420px);
+  margin: 0 auto;
+  height: clamp(300px, 40vw, 540px);
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
+}
+.hero-shot .screen { width: 74%; margin: 0 auto; }
+.hero-shot .piece.perhour { width: 34%; left: 0; top: 50%; }
+.hero-shot .piece.dinner { width: 31%; right: 0; top: 31%; }
+@media (min-width: 880px) {
+  .hero-grid { grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: 40px; margin-top: 44px; }
+  .hero-words { padding-bottom: 56px; }
+  .hero-shot { width: min(100%, 460px); margin-right: 0; height: clamp(440px, 38vw, 580px); }
+}
+@media (max-width: 879px) {
+  .hero-words { padding-top: 12px; }
+}
+
+/* ----- The tour: the App Store's pictures as one scene, sideways, each picture a stop. */
+.tour { margin-top: 48px; }
+.tour .scroller {
   overflow-x: auto;
+  overflow-y: hidden;
   overscroll-behavior-x: contain;
   scroll-snap-type: x proximity;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ink-3) transparent;
   border-radius: 28px;
   background: linear-gradient(160deg, #065f46, #0f766e);
-  box-shadow: 0 1px 0 var(--line);
+  box-shadow: var(--shadow-card);
 }
-.strip img {
+.tour .scene { position: relative; display: inline-block; vertical-align: top; }
+.tour .scene img {
   display: block;
-  height: clamp(360px, 62vh, 620px);
+  height: clamp(340px, 46vw, 600px);
   width: auto;
   max-width: none;
 }
-.strip .scroller:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-.strip figcaption { color: var(--ink-2); font-size: 0.92rem; margin-top: 10px; text-align: center; }
+.tour .snap { position: absolute; top: 0; bottom: 0; width: 1px; scroll-snap-align: start; }
+.tour .scroller:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.tour figcaption { color: var(--ink-2); font-size: 0.92rem; margin-top: 12px; text-align: center; }
 
-/* Cards: the app's own, plain on the page. */
-.section { padding: 64px 0 8px; }
-.section h2 {
+/* ----- Sections. */
+.section { padding: 72px 0 0; }
+.section h2, .feature h2 {
   font-family: var(--rounded);
   font-weight: 800;
-  font-size: clamp(1.7rem, 4.6vw, 2.3rem);
+  font-size: clamp(1.75rem, 4.4vw, 2.5rem);
   letter-spacing: -0.025em;
-  line-height: 1.12;
-  margin-top: 8px;
+  line-height: 1.1;
+  margin-top: 10px;
+  text-wrap: balance;
 }
-/* The darker emerald in the light look: the accent is 3.4:1 on the page, under the 4.5:1 small words need. */
-.section .label { color: var(--link); }
-.section > .wrap > p { color: var(--ink-2); font-size: 1.08rem; margin-top: 10px; max-width: 40em; }
+.lede { color: var(--ink-2); font-size: 1.1rem; margin-top: 12px; max-width: 42em; text-wrap: pretty; }
+.lede + .lede { margin-top: 8px; }
+
+/* The four cards: what it does, at a glance. */
 .cards { display: grid; gap: 16px; margin-top: 28px; }
-@media (min-width: 720px) { .cards { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 640px) { .cards { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1000px) { .cards.four { grid-template-columns: repeat(4, 1fr); } }
-.card { background: var(--card); border-radius: 24px; padding: 22px; }
+.card { background: var(--card); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow-card); }
 .card .icon {
   width: 44px;
   height: 44px;
   border-radius: 14px;
   display: grid;
   place-items: center;
-  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  background: var(--accent-soft);
   color: var(--accent);
 }
 .card .icon svg { width: 24px; height: 24px; }
-.card h3 { font-size: 1.08rem; letter-spacing: -0.01em; margin-top: 14px; }
+.card h3 { font-size: 1.08rem; letter-spacing: -0.01em; margin-top: 14px; line-height: 1.3; }
 .card p { color: var(--ink-2); font-size: 0.97rem; margin-top: 6px; }
 
-.pro { display: grid; gap: 16px; margin-top: 28px; }
-@media (min-width: 720px) { .pro { grid-template-columns: 1fr 1fr; } }
-.pro ul { list-style: none; margin-top: 12px; display: grid; gap: 8px; }
-.pro li { padding-left: 26px; position: relative; color: var(--ink); }
-.pro li::before {
+/* ----- A feature: words beside the app's screen, sides alternating on a wide page. */
+.features { padding-top: 24px; }
+.feature { display: grid; gap: 28px; align-items: center; padding: 48px 0; }
+.feature .words p { color: var(--ink-2); font-size: 1.08rem; margin-top: 14px; max-width: 34em; text-wrap: pretty; }
+.feature .words p + p { margin-top: 10px; }
+.feature .words ul { list-style: none; padding: 0; margin-top: 16px; display: grid; gap: 8px; color: var(--ink); font-size: 1.02rem; }
+.feature .words li { padding-left: 28px; position: relative; }
+.feature .words li::before, .plan li::before {
   content: "";
   position: absolute;
-  left: 2px;
-  top: 0.48em;
-  width: 12px;
-  height: 7px;
+  left: 3px;
+  top: 0.5em;
+  width: 11px;
+  height: 6px;
   border-left: 2.5px solid var(--accent);
   border-bottom: 2.5px solid var(--accent);
   transform: rotate(-45deg);
 }
-.pro .card h3 { margin-top: 2px; }
-.pro .card .label { color: var(--ink-2); }
+.shot { position: relative; width: min(100%, 420px); margin: 0 auto; }
+.shot .screen { width: 72%; margin: 0 auto; }
+/* A piece lifted off the screen floats over its edge, never past the shot's own box (so nothing scrolls sideways). */
+.shot .piece.bl { left: 0; bottom: 9%; }
+.shot .piece.br { right: 0; bottom: 9%; }
+.shot .piece.tr { right: 0; top: 6%; }
+.shot .piece.tl { left: 0; top: 6%; }
+.shot .piece.w32 { width: 32%; }
+.shot .piece.w34 { width: 34%; }
+.shot .piece.w44 { width: 44%; }
+.shot .piece.w62 { width: 62%; }
+.shot .piece.w64 { width: 64%; }
+.shot .piece.w70 { width: 70%; }
+.shot .piece.w90 { width: 90%; left: 5%; }
+.shot .piece.paper { filter: drop-shadow(0 24px 36px rgba(2, 44, 34, 0.35)) drop-shadow(0 2px 4px rgba(2, 44, 34, 0.15)); transform: rotate(-4deg); }
+@media (prefers-color-scheme: dark) { .shot .piece.paper { filter: drop-shadow(0 24px 36px rgba(0, 0, 0, 0.7)); } }
+.shot.collage { width: min(100%, 440px); display: grid; gap: 14px; padding-top: 11%; }
+.shot.collage .piece { position: static; }
+.shot.collage .piece.float-tr { position: absolute; top: 0; right: 0; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+@media (min-width: 880px) {
+  .feature { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; padding: 64px 0; }
+  .feature:nth-of-type(even) .shot { order: -1; }
+  .shot .screen { width: 70%; }
+}
+@media (min-width: 1200px) {
+  .feature { gap: 80px; }
+}
 
-/* The help and privacy pages: a band of aurora on top, then the words. */
-.band { padding-top: 24px; padding-bottom: 40px; }
+/* ----- The devices: the iPad's Home and the watch's pages, as screens. */
+.devices .ipad-shot { margin-top: 32px; }
+.devices .screen.ipad { width: min(100%, 980px); margin: 0 auto; }
+.watch-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 20px 16px; margin-top: 32px; }
+.watch-row figure { text-align: center; }
+.watch-row picture { max-width: 190px; margin: 0 auto; filter: var(--shadow-piece); }
+.watch-row figcaption { color: var(--ink-2); font-size: 0.92rem; margin-top: 10px; }
+
+/* ----- Private: the words and Settings' own iCloud row, on the dark look's black. */
+.private-grid { display: grid; gap: 28px; margin-top: 8px; align-items: center; }
+@media (min-width: 880px) { .private-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; } }
+.dark-panel {
+  background: #000000;
+  border-radius: 28px;
+  padding: clamp(18px, 5%, 32px);
+  box-shadow: var(--shadow-card);
+}
+@media (prefers-color-scheme: dark) { .dark-panel { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1); } }
+.dark-panel picture { max-width: 420px; margin: 0 auto; }
+
+/* ----- Free and Pro. */
+.plans { display: grid; gap: 16px; margin-top: 28px; }
+@media (min-width: 720px) { .plans { grid-template-columns: 1fr 1fr; } }
+.plan { background: var(--card); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow-card); }
+.plan h3 { font-family: var(--rounded); font-size: 1.3rem; letter-spacing: -0.015em; margin-top: 6px; }
+.plan ul { list-style: none; padding: 0; margin-top: 14px; display: grid; gap: 9px; }
+.plan li { padding-left: 28px; position: relative; }
+.plan.pro { background: linear-gradient(170deg, rgba(5, 150, 105, 0.1), rgba(5, 150, 105, 0.02)), var(--card); }
+.prices { display: grid; gap: 12px; margin-top: 16px; }
+@media (min-width: 640px) { .prices { grid-template-columns: repeat(3, 1fr); } }
+.price {
+  background: var(--card);
+  border-radius: 20px;
+  padding: 18px 20px;
+  box-shadow: var(--shadow-card);
+}
+.price .label { color: var(--ink-2); }
+.price .amount { font-family: var(--rounded); font-weight: 900; font-size: 2.1rem; letter-spacing: -0.03em; line-height: 1.1; margin-top: 6px; font-variant-numeric: tabular-nums; }
+.price .amount small { font-size: 0.5em; font-weight: 700; letter-spacing: 0; color: var(--ink-2); }
+.price .note { color: var(--ink-2); font-size: 0.92rem; margin-top: 6px; }
+.price.best { outline: 2px solid var(--accent); outline-offset: -2px; }
+.small { color: var(--ink-2); font-size: 0.92rem; margin-top: 16px; max-width: 60em; text-wrap: pretty; }
+
+/* ----- Questions: the support card. */
+.help-card { margin-top: 24px; display: grid; gap: 14px; }
+.help-card .row { display: flex; flex-wrap: wrap; gap: 10px; }
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
+}
+.pill:hover { filter: brightness(1.06); }
+.pill.quiet { background: var(--accent-soft); color: var(--link); }
+@media (prefers-color-scheme: dark) { .pill { color: #04281c; } .pill.quiet { color: var(--link); } }
+
+/* ----- The help and privacy pages: a band of aurora on top, then the words, with their own table of contents. */
+.band .wrap { padding-bottom: 36px; }
 .band h1 {
   font-family: var(--rounded);
   font-weight: 900;
-  font-size: clamp(2.2rem, 7vw, 3.1rem);
+  font-size: clamp(2.2rem, 7vw, 3.2rem);
   letter-spacing: -0.03em;
   line-height: 1.08;
   margin-top: 40px;
+  text-wrap: balance;
 }
-.band .line { color: rgba(255, 255, 255, 0.86); margin-top: 10px; font-size: 1.05rem; }
-.page { padding-top: 36px; padding-bottom: 24px; }
-.page h2 { font-size: 1.25rem; letter-spacing: -0.01em; margin: 40px 0 8px; line-height: 1.3; }
-.page h3 { font-size: 1.04rem; margin: 26px 0 6px; line-height: 1.35; }
-.page p, .page li { font-size: 1rem; }
+.band .line { color: var(--on-aurora-2); margin-top: 10px; font-size: 1.08rem; max-width: 36em; text-wrap: pretty; }
+.band { border-radius: 0 0 36px 36px; }
+.page-grid { display: grid; gap: 28px; padding-top: 32px; }
+@media (min-width: 980px) {
+  .page-grid { grid-template-columns: 230px minmax(0, 700px); gap: 56px; justify-content: center; padding-top: 44px; }
+  .toc { position: sticky; top: 24px; align-self: start; }
+}
+.toc h2 { font-size: 0.76rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-2); margin: 0 0 10px; }
+.toc ol { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+@media (min-width: 980px) { .toc ol { display: grid; gap: 2px; } }
+.toc a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--ink);
+  font-size: 0.92rem;
+  font-weight: 500;
+  text-decoration: none;
+  box-shadow: var(--shadow-card);
+}
+@media (min-width: 980px) { .toc a { background: none; box-shadow: none; padding: 4px 10px; } }
+.toc a:hover { background: var(--accent-soft); color: var(--link); }
+.page h2 { font-family: var(--rounded); font-size: 1.45rem; letter-spacing: -0.015em; margin: 44px 0 10px; line-height: 1.25; scroll-margin-top: 24px; }
+.page h2:first-child { margin-top: 0; }
+.page h3 { font-size: 1.06rem; margin: 26px 0 6px; line-height: 1.35; scroll-margin-top: 24px; }
+.page p, .page li { font-size: 1.02rem; text-wrap: pretty; }
 .page p + p { margin-top: 12px; }
 .page ul { padding-left: 22px; margin: 10px 0; }
 .page li { margin: 8px 0; }
 .page li::marker { color: var(--accent); }
 .page .card { margin: 4px 0 8px; }
-.page .card h2 { margin: 0 0 6px; font-size: 1.05rem; }
+.page .card h2 { margin: 0 0 6px; font-size: 1.1rem; }
 .page .card ul { margin-bottom: 0; }
 .page .card p { color: var(--ink); }
+.page .contact-card { display: grid; gap: 10px; }
+.page .contact-card .pill { justify-self: start; }
 .muted { color: var(--ink-2); }
+.back-top { margin-top: 44px; font-size: 0.95rem; }
 
-footer { padding: 48px 0 56px; }
-footer nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 28px; font-weight: 600; }
-footer .tm { color: var(--ink-2); font-size: 0.8rem; line-height: 1.6; text-align: center; margin-top: 22px; }
+/* ----- The foot of every page. */
+footer { padding: 56px 0 max(48px, env(safe-area-inset-bottom)); }
+footer .wrap { border-top: 1px solid var(--line); padding-top: 32px; }
+footer nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 8px; font-weight: 600; }
+footer nav a { display: inline-flex; align-items: center; min-height: 44px; padding: 4px 12px; border-radius: 999px; text-decoration: none; }
+footer nav a:hover { background: var(--accent-soft); text-decoration: underline; }
+footer .tm { color: var(--ink-2); font-size: 0.8rem; line-height: 1.6; text-align: center; margin-top: 18px; max-width: 70em; margin-left: auto; margin-right: auto; text-wrap: pretty; }
+
+/* ----- Motion: a section rises as it comes into view, on browsers that can, never under Reduce Motion. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
+    }
+  }
+}
+@keyframes rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
 
 @media (forced-colors: active) {
-  .aurora { border: 1px solid CanvasText; }
-  .card, .glance, .soon { border: 1px solid CanvasText; }
+  .aurora, .card, .plan, .price, .soon, .btn, .pill, .toc a, .screen, .dark-panel { border: 1px solid CanvasText; }
+  .label .pro { border: 1px solid CanvasText; }
+}
+
+/* ----- Paper: the words, black on white, nothing that only decorates. */
+@media print {
+  :root { --page: #ffffff; --card: #ffffff; --ink: #000000; --ink-2: #333333; --link: #000000; --line: #999999; }
+  body { background: #ffffff; color: #000000; }
+  .aurora { background: none !important; color: #000000; border-radius: 0; border-bottom: 1px solid #999999; }
+  .aurora::before, .aurora::after { display: none; }
+  .aurora .label, .band .line { color: #333333; }
+  .skip, .top .links, .toc, .tour, .hero-shot, .hero-cta, .back-top, footer nav { display: none; }
+  .reveal { animation: none; opacity: 1; transform: none; }
+  .page-grid { display: block; }
+  .card, .plan, .price { box-shadow: none; border: 1px solid #999999; break-inside: avoid; }
+  a { color: #000000; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.85em; color: #333333; }
+  .page h2, .page h3 { break-after: avoid; }
+  footer .tm { margin-top: 8px; }
 }
