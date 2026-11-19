@@ -163,13 +163,63 @@
 /* ----- Free and Pro: the three prices big, then what each gives as chips. */
 .price { padding: 58px 0 6px; }
 .price h2 { text-align: center; font-size: clamp(1.75rem, 6.4vw, 2.9rem); }
-.plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 22px; }
-.plan { background: var(--card); border-radius: 20px; padding: 14px 6px 13px; text-align: center; box-shadow: var(--shadow-card); min-width: 0; }
-.plan.best { box-shadow: inset 0 0 0 2px var(--accent), var(--shadow-card); }
-.plan .name { font-size: 0.68rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-2); }
-.plan .cost { font-family: var(--rounded); font-weight: 900; font-size: clamp(1.25rem, 5.8vw, 2.4rem); letter-spacing: -0.03em; margin-top: 4px; line-height: 1.1; }
-.plan .cost small { font-size: 0.48em; font-weight: 700; color: var(--ink-2); letter-spacing: 0; }
-.plan .note { font-size: 0.78rem; color: var(--ink-2); margin-top: 3px; }
+.plans { display: grid; grid-template-columns: 1fr 1.12fr 1fr; gap: 8px; margin-top: 24px; align-items: center; }
+.plan {
+  position: relative;
+  background: var(--card);
+  border-radius: 22px;
+  padding: 16px 6px 15px;
+  text-align: center;
+  box-shadow: var(--shadow-card);
+  min-width: 0;
+}
+.plan .name { font-size: 0.68rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-2); }
+.plan .cost {
+  font-family: var(--rounded);
+  font-weight: 900;
+  font-size: clamp(1.35rem, 6vw, 2.5rem);
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  margin-top: 6px;
+}
+.plan .per { font-size: 0.8rem; font-weight: 600; color: var(--ink-2); margin-top: 3px; }
+.plan.best {
+  padding: 26px 6px 22px;
+  color: #ffffff;
+  background:
+    radial-gradient(90% 70% at 85% 0%, rgba(52, 211, 153, 0.55), rgba(52, 211, 153, 0) 70%),
+    linear-gradient(160deg, #047857, #064e3b);
+  box-shadow: 0 22px 40px -22px rgba(4, 120, 87, 0.75), 0 2px 8px -2px rgba(2, 44, 34, 0.25);
+}
+.plan.best .name, .plan.best .per { color: rgba(236, 253, 245, 0.9); }
+.plan.best .cost { font-size: clamp(1.6rem, 7.4vw, 3rem); }
+.badge {
+  position: absolute;
+  top: -11px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #a7f3d0;
+  color: #064e3b;
+  box-shadow: 0 4px 10px -4px rgba(2, 44, 34, 0.35);
+}
+.trial {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 18px;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--link);
+}
+.trial svg { width: 22px; height: 22px; flex: none; }
 .lists { display: grid; gap: 10px; margin-top: 12px; }
 .list { background: var(--card); border-radius: 22px; padding: 16px; box-shadow: var(--shadow-card); }
 .list h3 { font-family: var(--rounded); font-weight: 900; font-size: 1.12rem; letter-spacing: -0.01em; }
@@ -214,8 +264,9 @@
   .tile .art { width: 112%; margin-left: -6%; }
   .tile.wide .art { width: 100%; margin-left: 0; }
   .devices { margin: 60px 16px 0; border-radius: 36px; }
-  .plans { gap: 12px; }
-  .plan { padding: 20px 10px 18px; }
+  .plans { gap: 16px; max-width: 760px; margin-left: auto; margin-right: auto; }
+  .plan { padding: 24px 10px 22px; border-radius: 26px; }
+  .plan.best { padding: 34px 10px 30px; }
 }
 @media (min-width: 900px) {
   .private-grid { grid-template-columns: 1.15fr 0.85fr; gap: 40px; }
@@ -254,7 +305,7 @@
   .chips.small li { background: rgba(255, 255, 255, 0.08); }
 }
 @media (forced-colors: active) {
-  .tile, .icons li, .plan, .list, .help-card, .chips li, .pro-tag { border: 1px solid CanvasText; }
+  .tile, .icons li, .plan, .list, .help-card, .chips li, .pro-tag, .badge { border: 1px solid CanvasText; }
 }
 @media print {
   .hero-art, .art, .devices-art, .private-art { display: none; }

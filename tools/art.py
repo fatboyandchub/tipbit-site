@@ -76,8 +76,10 @@ TILE = (1400, 1240)
 
 
 def tile(shot, ry, rz, pieces, x=700, y=1085, w=980):
+    """A feature's tile: its phone straight on (Jay, Nov 19: "don't tilt them just have them flat"; ry and rz are kept
+    in the scenes below only as they were), the pieces still lifted off it on glass."""
     c = Image.new("RGBA", TILE, (0, 0, 0, 0))
-    phone(c, shot, x, y, w, ry=ry, rz=rz, pieces=pieces)
+    phone(c, shot, x, y, w, ry=0, rx=0, rz=0, pieces=pieces)
     return c
 
 
@@ -98,7 +100,7 @@ SCENES = {
                                              dict(shot="trip", box=(16, 684, 408, 146), radius=22, at=(246, 506),
                                                   scale=1.04)]), (560, 840, 1120)),
     "year": (lambda: tile("year", -5, 1, [dict(shot="year-summary-page1", box=(0, 0, 612, 792), radius=0, at=(222, 572),
-                                               scale=0.62, spin=-2.0, paper=True)]), (560, 840, 1120)),
+                                               scale=0.62, spin=0, paper=True)]), (560, 840, 1120)),
     "home": (lambda: tile("home", 9, -3, [dict(shot="home-chart", box=(16, 452, 408, 255), snap=True, radius=24,
                                                at=(222, 420), scale=1.0)]), (560, 840, 1120)),
     "private": (lambda: tile("home-dark", -9, 3, [dict(shot="settings-dark", box=(16, 525, 408, 130), radius=24,
