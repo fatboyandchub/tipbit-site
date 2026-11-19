@@ -251,7 +251,7 @@ ul, ol { padding-left: 1.3em; }
   text-wrap: pretty;
 }
 .hero-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 20px; }
-.soon, .btn {
+.soon {
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -267,8 +267,7 @@ ul, ol { padding-left: 1.3em; }
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
 }
-.soon svg, .btn svg { width: 18px; height: 18px; flex: none; }
-.btn:hover { background: rgba(255, 255, 255, 0.24); }
+.soon svg { width: 18px; height: 18px; flex: none; }
 .hero-facts {
   list-style: none;
   padding: 0;
@@ -321,7 +320,6 @@ ul, ol { padding-left: 1.3em; }
   .hero-words { padding-top: 8px; }
 }
 @media (max-width: 639px) {
-  .hero .btn { display: none; }
   /* The shot is short on a phone: the Per hour tile would sit over the week's number. */
   .hero-shot .piece.perhour { display: none; }
 }
@@ -361,8 +359,9 @@ ul, ol { padding-left: 1.3em; }
 .gallery figcaption { text-align: center; color: var(--ink-2); font-size: 0.78rem; font-weight: 600; margin-top: 6px; }
 .gallery .screen {
   box-shadow: none;
-  aspect-ratio: 990 / 1760;
-  border-radius: clamp(12px, 13.5cqw, 64px) clamp(12px, 13.5cqw, 64px) 0 0;
+  background: none;
+  border-radius: 0;
+  aspect-ratio: 520 / 820;
   -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent 100%);
   mask-image: linear-gradient(to bottom, #000 78%, transparent 100%);
 }
@@ -559,7 +558,7 @@ footer nav a:hover { background: var(--accent-soft); text-decoration: underline;
 footer .tm { color: var(--ink-2); font-size: 0.76rem; line-height: 1.5; text-align: center; margin-top: 14px; max-width: 70em; margin-left: auto; margin-right: auto; text-wrap: pretty; }
 
 @media (forced-colors: active) {
-  .aurora, .card, .feat, .price, .soon, .btn, .pill, .toc a, .screen, .table-card, .private, .help-card, .ways li, .watch-row picture { border: 1px solid CanvasText; }
+  .aurora, .card, .feat, .price, .soon, .pill, .toc a, .screen, .table-card, .private, .help-card, .ways li, .watch-row picture { border: 1px solid CanvasText; }
   .label .pro, .cat .pro { border: 1px solid CanvasText; }
   .feat .icon { border: 1px solid CanvasText; }
   .price.best { outline-color: Highlight; }

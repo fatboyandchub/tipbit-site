@@ -6,7 +6,8 @@ Usage: python3 tools/images.py            (from the site's folder; reads ~/Deskt
 Each picture is written as AVIF, WebP and a JPEG or PNG fallback at a few widths, for <picture> with srcset. The screens
 are the app's own screens, flat, square-cornered here (the page rounds them); a "piece" is a card lifted off a screen
 with its own rounded corners baked in (alpha), as the store pictures lift them; the watch's pages are cut to the watch
-screen's own shape. The strip (img/strip.jpg, the eight store pictures as one scene) is only re-encoded smaller.
+screen's own shape; a "tile" (img/t) is a screen cut for the front page's grid, under the status bar or at a sheet's own
+top, with rounded top corners in alpha. The strip (img/strip.jpg, the eight store pictures as one scene) is only re-encoded smaller.
 """
 import os
 import sys
@@ -137,6 +138,47 @@ def pieces():
     save_all(im, os.path.join(IMG, "p", "paper"), (480, 720), avif_q=62, webp_q=84)
 
 
+# The front page's six-screen grid: each screen cut to a tidy tile. A plain screen starts just under the status bar
+# (its glyphs end at 40 pt on the 6.9" iPhone); a sheet (New entry, the trip's page) starts at the sheet's own top edge
+# (62 pt), so the screen behind it never shows. Every tile gets the same rounded top corners (a sheet's own 40 pt, in
+# alpha), so the six read as one set; the page fades each tile's bottom out, so they're cut at 800 pt.
+TILES = {
+    # name: (top in points, the raw screen it's cut from)
+    "entry": (62, "entry"),
+    "calendar": (46, "calendar"),
+    "insights": (46, "insights"),
+    "schedule": (46, "schedule"),
+    "trip": (62, "trip"),
+    "year": (46, "year"),
+}
+TILE_RADIUS = 40  # points, a sheet's own top corners
+TILE_HEIGHT = 800  # points kept under the cut
+
+
+def tiles():
+    os.makedirs(os.path.join(IMG, "t"), exist_ok=True)
+    for name, (top, shot) in TILES.items():
+        print(name)
+        im = load(os.path.join(RAW, f"{shot}.png")).convert("RGB")
+        assert im.size == (1320, 2868), im.size
+        y0 = top * POINT
+        px = im.load()
+        # The cut must fall between the status bar's glyphs and the first thing drawn under them.
+        dark = [y for y in range(0, 110 * POINT) if any((sum(px[x, y]) / 3) < 110 for x in range(0, im.width, 3))]
+        above = max((y for y in dark if y < y0), default=None)
+        below = min((y for y in dark if y >= y0), default=None)
+        print(f"  cut at {top} pt: dark above ends {above and above / POINT:.0f} pt, next dark row {below and below / POINT:.0f} pt")
+        cut = im.crop((0, y0, im.width, min(im.height, y0 + TILE_HEIGHT * POINT))).convert("RGBA")
+        r = TILE_RADIUS * POINT
+        mask = Image.new("L", cut.size, 255)
+        draw = ImageDraw.Draw(mask)
+        # Only the top corners are rounded: a rounded rectangle taller than the tile, so its bottom corners fall outside.
+        draw.rectangle((0, 0, cut.width - 1, cut.height - 1), fill=0)
+        draw.rounded_rectangle((0, 0, cut.width - 1, cut.height - 1 + r), radius=r, fill=255)
+        cut.putalpha(mask)
+        save_all(cut, os.path.join(IMG, "t", name), (360, 520), alpha=True, avif_q=58)
+
+
 WATCH_RADIUS = 0.26  # the watch screen's corners as a share of its width (measured on the Ultra 3's own screen shape)
 
 
@@ -174,6 +216,6 @@ def icon():
 
 
 if __name__ == "__main__":
-    which = sys.argv[1:] or ["screens", "pieces", "watch", "strip", "icon"]
+    which = sys.argv[1:] or ["screens", "tiles", "pieces", "watch", "strip", "icon"]
     for step in which:
         globals()[step]()
