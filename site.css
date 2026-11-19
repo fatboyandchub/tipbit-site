@@ -67,7 +67,7 @@
       --link: #6ee7b7;
     }
   }
-  .card, .feat, .price, .table-card, .private, .help-card { border: 1px solid var(--line); }
+  .card { border: 1px solid var(--line); }
   a { text-decoration: underline; }
 }
 
@@ -229,28 +229,6 @@ ul, ol { padding-left: 1.3em; }
 .top .links a:hover { background: rgba(255, 255, 255, 0.14); }
 .top .links a[aria-current="page"] { background: rgba(255, 255, 255, 0.18); }
 
-/* ----- The front page's hero: the words, and Home's own screen standing in the band. */
-.hero { border-radius: 0 0 32px 32px; }
-.hero-grid { display: grid; gap: 24px; margin-top: 24px; align-items: end; }
-.hero h1 {
-  font-family: var(--rounded);
-  font-weight: 900;
-  font-size: clamp(2.15rem, 7.2vw, 4.2rem);
-  line-height: 1.02;
-  letter-spacing: -0.035em;
-  margin-top: 10px;
-  text-wrap: balance;
-  text-shadow: 0 2px 24px rgba(2, 44, 34, 0.35);
-}
-.hero .line {
-  font-size: clamp(1rem, 2.2vw, 1.22rem);
-  line-height: 1.45;
-  color: var(--on-aurora-2);
-  max-width: 30em;
-  margin-top: 14px;
-  text-wrap: pretty;
-}
-.hero-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 20px; }
 .soon {
   display: inline-flex;
   align-items: center;
@@ -268,214 +246,7 @@ ul, ol { padding-left: 1.3em; }
   backdrop-filter: blur(12px);
 }
 .soon svg { width: 18px; height: 18px; flex: none; }
-.hero-facts {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 3px 14px;
-  margin-top: 16px;
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: var(--on-aurora-2);
-}
-.hero-facts li { display: inline-flex; align-items: center; gap: 7px; }
-.hero-facts svg { width: 16px; height: 16px; color: #a7f3d0; }
-
-/* The screen: the app's own, flat, with the phone screen's rounded corners and a soft shadow (no drawn device). */
-.screen {
-  display: block;
-  container-type: inline-size;
-  border-radius: 28px;
-  border-radius: clamp(12px, 13.5cqw, 64px);
-  overflow: hidden;
-  box-shadow: var(--shadow-screen);
-  background: var(--card);
-}
-.screen img { width: 100%; height: auto; }
-.screen.ipad { border-radius: 16px; border-radius: clamp(10px, 2.2cqw, 28px); }
-.piece { position: absolute; filter: var(--shadow-piece); }
-.piece img { width: 100%; height: auto; }
-
-.hero-shot {
-  position: relative;
-  width: min(100%, 420px);
-  margin: 0 auto;
-  height: clamp(195px, 34vw, 470px);
-  overflow: hidden;
-  -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
-  mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
-}
-.hero-shot .screen { width: 74%; margin: 0 auto; }
-.hero-shot .piece.perhour { width: 34%; left: 0; top: 50%; }
-.hero-shot .piece.dinner { width: 31%; right: 0; top: 31%; }
-/* The dark look shows Home in the dark, whole: its lifted pieces are the light look's. */
-@media (prefers-color-scheme: dark) { .hero-shot .piece { display: none; } }
-@media (min-width: 780px) {
-  .hero-grid { grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: 40px; margin-top: 28px; }
-  .hero-words { padding-bottom: 44px; }
-  .hero-shot { width: min(100%, 440px); margin-right: 0; height: clamp(380px, 32vw, 470px); }
-}
-@media (max-width: 879px) {
-  .hero-words { padding-top: 8px; }
-}
-@media (max-width: 639px) {
-  /* The shot is short on a phone: the Per hour tile would sit over the week's number. */
-  .hero-shot .piece.perhour { display: none; }
-}
-
-/* ----- Sections. */
-.section { padding: 40px 0 0; }
-.section h2 {
-  font-family: var(--rounded);
-  font-weight: 800;
-  font-size: clamp(1.6rem, 4vw, 2.3rem);
-  letter-spacing: -0.025em;
-  line-height: 1.1;
-  margin-top: 8px;
-  text-wrap: balance;
-}
-.lede { color: var(--ink-2); font-size: 1.04rem; margin-top: 10px; max-width: 44em; text-wrap: pretty; }
-@media (min-width: 880px) { .section { padding-top: 64px; } }
-
-/* The ways a job can pay: chips, as the app's welcome shows them. */
-.ways { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
-.ways li {
-  display: inline-flex;
-  align-items: center;
-  min-height: 34px;
-  padding: 4px 13px;
-  border-radius: 999px;
-  background: var(--card);
-  box-shadow: var(--shadow-card);
-  font-weight: 600;
-  font-size: 0.92rem;
-}
-.ways li:last-child { background: none; box-shadow: none; color: var(--ink-2); padding-left: 2px; }
-
-/* The six screens in a grid: three across on a phone, six across from a tablet up. */
-.gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px 10px; margin-top: 24px; }
-.gallery figure { margin: 0; }
-.gallery figcaption { text-align: center; color: var(--ink-2); font-size: 0.78rem; font-weight: 600; margin-top: 6px; }
-.gallery .screen {
-  box-shadow: none;
-  background: none;
-  border-radius: 0;
-  aspect-ratio: 520 / 820;
-  -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent 100%);
-  mask-image: linear-gradient(to bottom, #000 78%, transparent 100%);
-}
-.gallery .screen img { height: 100%; object-fit: cover; object-position: top; }
-@media (min-width: 700px) {
-  .gallery { grid-template-columns: repeat(6, 1fr); gap: 14px; margin-top: 36px; }
-  .gallery figcaption { font-size: 0.85rem; margin-top: 10px; }
-}
-
-/* A plain card: the support and privacy pages' boxes. */
 .card { background: var(--card); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow-card); }
-
-/* The feature cards: a list on a phone (the icon, the name and the line run into the words), boxes from a tablet up,
-   two across, then four on a wide screen. */
-.cards { display: grid; gap: 12px; margin-top: 28px; }
-.feat { background: var(--card); border-radius: var(--radius); padding: 18px 18px 20px; box-shadow: var(--shadow-card); }
-.feat h3 { font-family: var(--rounded); font-size: 1.22rem; letter-spacing: -0.015em; line-height: 1.2; text-wrap: balance; }
-.feat .icon {
-  display: grid;
-  place-items: center;
-  width: 34px;
-  height: 34px;
-  margin-bottom: 12px;
-  border-radius: 11px;
-  background: var(--accent-soft);
-  color: var(--accent);
-}
-.feat .icon svg { width: 20px; height: 20px; }
-.feat .cat { display: block; margin-bottom: 6px; font-family: var(--text); font-size: 0.76rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--link); }
-.feat .cat .pro { font-family: var(--text); }
-.feat p { color: var(--ink-2); font-size: 0.97rem; margin-top: 8px; text-wrap: pretty; }
-@media (max-width: 639px) {
-  .cards { gap: 0; margin-top: 22px; border-top: 1px solid var(--line); }
-  .feat { background: none; box-shadow: none; border-radius: 0; padding: 11px 0 12px; border-bottom: 1px solid var(--line); }
-  .feat h3 { display: inline; font-size: 1rem; line-height: 1.42; letter-spacing: -0.01em; }
-  .feat h3::after { content: " "; }
-  .feat .icon { display: inline-grid; width: 22px; height: 22px; margin: 0 6px 0 0; border-radius: 7px; vertical-align: -5px; }
-  .feat .icon svg { width: 14px; height: 14px; }
-  .feat .cat { display: inline; margin: 0 6px 0 0; font-size: 0.68rem; letter-spacing: 0.1em; }
-  .feat .cat .pro { vertical-align: 1px; }
-  .feat p { display: inline; margin: 0; font-size: 0.93rem; line-height: 1.42; }
-}
-@media (min-width: 640px) { .cards { grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 36px; } }
-@media (min-width: 1000px) { .cards { grid-template-columns: repeat(4, 1fr); } .feat { padding: 20px 20px 22px; } }
-
-/* ----- The devices: the iPad's Home beside the watch's pages. */
-.devices-grid { display: grid; gap: 22px; margin-top: 20px; align-items: center; }
-.devices .screen.ipad { width: min(100%, 860px); margin: 0 auto; }
-.watch p:not(.label) { margin-top: 6px; color: var(--ink-2); font-size: 0.96rem; text-wrap: pretty; }
-.watch-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 14px; }
-.watch-row figure { text-align: center; margin: 0; }
-.watch-row picture { max-width: 150px; margin: 0 auto; filter: var(--shadow-piece); }
-.watch-row figcaption { color: var(--ink-2); font-size: 0.74rem; line-height: 1.3; margin-top: 8px; }
-@media (max-width: 639px) { .watch-row figcaption { display: none; } .private .flat { display: none; } .help-card h2 { display: none; } }
-@media (min-width: 900px) {
-  .devices-grid { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 40px; margin-top: 28px; }
-  .watch-row { gap: 12px; }
-  .watch-row figcaption { font-size: 0.8rem; }
-}
-
-/* ----- Private: one card, the words beside Settings' own iCloud row. */
-.private { display: grid; gap: 18px; background: var(--card); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow-card); align-items: center; }
-.private .words p:not(.label) { color: var(--ink-2); margin-top: 8px; font-size: 1rem; text-wrap: pretty; }
-.facts { list-style: none; padding: 0; margin-top: 10px; display: grid; gap: 5px; font-size: 0.95rem; }
-.facts li { padding-left: 26px; position: relative; }
-.facts li::before {
-  content: "";
-  position: absolute;
-  left: 3px;
-  top: 0.5em;
-  width: 11px;
-  height: 6px;
-  border-left: 2.5px solid var(--accent);
-  border-bottom: 2.5px solid var(--accent);
-  transform: rotate(-45deg);
-}
-.private .flat { width: min(100%, 420px); margin: 0 auto; filter: var(--shadow-piece); }
-@media (min-width: 900px) {
-  .private { grid-template-columns: minmax(0, 1fr) minmax(300px, 420px); gap: 40px; padding: 28px 32px; }
-  .private .flat { margin: 0; }
-}
-
-/* ----- Free and Pro: the table, with the prices beside it on a wide screen. */
-.pro-grid { display: grid; gap: 20px; margin-top: 24px; align-items: start; }
-.table-card { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow-card); overflow: hidden; }
-.compare { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 0.9rem; line-height: 1.35; }
-.compare th, .compare td { padding: 7px 8px; text-align: left; vertical-align: middle; border-top: 1px solid var(--line); }
-.compare thead th { border-top: 0; padding-top: 12px; padding-bottom: 10px; font-family: var(--rounded); font-size: 1rem; font-weight: 800; letter-spacing: -0.01em; }
-.compare th[scope="row"] { font-weight: 500; padding-left: 14px; }
-.compare td, .compare thead th:not(:first-child) { text-align: center; width: 18%; }
-.compare td:last-child, .compare thead th:last-child { padding-right: 12px; }
-@media (min-width: 640px) { .compare td { white-space: nowrap; width: 21%; } .compare th, .compare td { padding: 9px 10px; } .compare th[scope="row"] { padding-left: 16px; } }
-.compare .pro-col { color: var(--link); }
-.compare .yes svg { width: 20px; height: 20px; color: var(--accent); margin: 0 auto; }
-.compare .no { color: var(--ink-3); }
-.prices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-.price { background: var(--card); border-radius: 18px; padding: 14px 10px 12px; box-shadow: var(--shadow-card); text-align: center; }
-.price .label { color: var(--ink-2); font-size: 0.7rem; }
-.price .amount { font-family: var(--rounded); font-weight: 900; font-size: clamp(1.45rem, 5.6vw, 2rem); letter-spacing: -0.03em; line-height: 1.05; margin-top: 4px; font-variant-numeric: tabular-nums; }
-.price .amount small { display: block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0; color: var(--ink-2); margin-top: 2px; font-family: var(--text); }
-.price .note { color: var(--ink-2); font-size: 0.78rem; line-height: 1.35; margin-top: 8px; text-wrap: balance; }
-.price.best { outline: 2px solid var(--accent); outline-offset: -2px; }
-.small { color: var(--ink-2); font-size: 0.83rem; margin-top: 12px; max-width: 60em; text-wrap: pretty; }
-@media (min-width: 900px) {
-  .pro-grid { grid-template-columns: minmax(0, 1fr) 300px; gap: 28px; }
-  .prices { grid-template-columns: 1fr; gap: 12px; }
-  .price { padding: 16px 18px 14px; }
-  .price .amount { font-size: 2rem; }
-}
-
-/* ----- Questions: one card with the words and the two pills. */
-.help-card { background: var(--card); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow-card); display: grid; gap: 14px; align-items: center; }
-.help-card .lede { font-size: 0.95rem; margin-top: 6px; }
-.help-card .row { display: flex; flex-wrap: wrap; gap: 10px; }
 .pill {
   display: inline-flex;
   align-items: center;
@@ -491,9 +262,6 @@ ul, ol { padding-left: 1.3em; }
 .pill:hover { filter: brightness(1.06); }
 .pill.quiet { background: var(--accent-soft); color: var(--link); }
 @media (prefers-color-scheme: dark) { .pill { color: #04281c; } .pill.quiet { color: var(--link); } }
-@media (min-width: 900px) {
-  .help-card { grid-template-columns: minmax(0, 1fr) auto; gap: 32px; padding: 28px 32px; }
-  .help-card .row { justify-content: end; }
 }
 
 /* ----- The help and privacy pages: a band of aurora on top, then the words, with their own table of contents. */
@@ -558,10 +326,8 @@ footer nav a:hover { background: var(--accent-soft); text-decoration: underline;
 footer .tm { color: var(--ink-2); font-size: 0.76rem; line-height: 1.5; text-align: center; margin-top: 14px; max-width: 70em; margin-left: auto; margin-right: auto; text-wrap: pretty; }
 
 @media (forced-colors: active) {
-  .aurora, .card, .feat, .price, .soon, .pill, .toc a, .screen, .table-card, .private, .help-card, .ways li, .watch-row picture { border: 1px solid CanvasText; }
+  .aurora, .card, .soon, .pill, .toc a { border: 1px solid CanvasText; }
   .label .pro, .cat .pro { border: 1px solid CanvasText; }
-  .feat .icon { border: 1px solid CanvasText; }
-  .price.best { outline-color: Highlight; }
 }
 
 /* ----- Paper: the words, black on white, nothing that only decorates. */
@@ -571,10 +337,9 @@ footer .tm { color: var(--ink-2); font-size: 0.76rem; line-height: 1.5; text-ali
   .aurora { background: none !important; color: #000000; border-radius: 0; border-bottom: 1px solid #999999; }
   .aurora::before, .aurora::after { display: none; }
   .aurora .label, .band .line { color: #333333; }
-  .skip, .top .links, .toc, .gallery, .hero-shot, .hero-cta, .back-top, footer nav { display: none; }
+  .skip, .top .links, .toc, .back-top, footer nav { display: none; }
   .page-grid { display: block; }
-  .card, .feat, .price, .table-card, .private, .help-card { box-shadow: none; border: 1px solid #999999; break-inside: avoid; }
-  .cards { grid-template-columns: 1fr 1fr; }
+  .card { box-shadow: none; border: 1px solid #999999; break-inside: avoid; }
   a { color: #000000; }
   a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.85em; color: #333333; }
   .page h2, .page h3 { break-after: avoid; }
